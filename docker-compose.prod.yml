@@ -1,0 +1,18 @@
+version: '3.4'
+
+services:
+  devindocker_prod:
+    extends:
+      file: docker-compose.base.yml
+      service: devindocker
+    container_name: devInDocker_prod
+    build:
+      context: .
+      args:
+        NODE_ENV: production
+    environment:
+      NODE_ENV: production
+    env_file: .env
+    ports:
+      - 3000:3000
+    command: npm run start

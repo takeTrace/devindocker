@@ -1,0 +1,25 @@
+version: '3.4'
+
+services:
+  redis:
+    image: redis
+    container_name: redis
+  mongodb:
+    image: mongo
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: asd
+      MONGO_INITDB_ROOT_PASSWORD: asdasd
+
+  devindocker:
+    image: devindocker
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    environment:
+      NODE_ENV: production
+      PORT: '3000'
+    # ports:
+    #   - 3000:3000
+    command: ["npm", "run", "start"]
+    # depends_on:
+    #   - mongodb
