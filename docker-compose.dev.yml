@@ -1,12 +1,16 @@
 version: '3.8'
 
 services:
+  nginx:
+    extends:
+      file: docker-compose.base.yml
+      service: nginx
   redis:
     extends:
       file: docker-compose.base.yml
       service: redis
-    ports:
-      - 6379:6379
+    # ports:
+    #   - 6379:6379
   mongodb:
     container_name: mongodb
     extends:
@@ -16,7 +20,7 @@ services:
     volumes:
       - mongo-db:/data/db
 
-  devindocker_dev:
+  devindocker:
     extends:
       file: docker-compose.base.yml
       service: devindocker
@@ -39,8 +43,8 @@ services:
       REDIS_URL: redis
       REDIS_PORT: 6379
       COOKIE_SECRET: "keyboard cat"
-    ports:
-      - 4000:3000
+    # ports:
+    #   - 4000:3000
     env_file: .env
     command: npm run dev
 
