@@ -24,7 +24,7 @@ services:
     extends:
       file: docker-compose.base.yml
       service: devindocker
-    container_name: devInDocker_dev
+    # container_name: devInDocker_dev
     build:
       context: .
       args:

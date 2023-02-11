@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const cors = require('cors');
 
 const postRouter = require('./routes/postRoute');
 const { userRouter } = require('./routes/userRoute');
@@ -49,6 +50,9 @@ const connectDBWithRetry = () => {
   console.log('starting express...');
   const app = express();
 
+  app.enable('trust proxy');
+  app.use(cors({}));
+
   // setup redisDB for store session
   app.use(
     session({
@@ -69,6 +73,7 @@ const connectDBWithRetry = () => {
   app.use(express.json());
 
   app.get('/', (req, res) => {
+    console.log(`hi, there`);
     res.send('<h1>Hi docker00!</h1>');
   })
 
