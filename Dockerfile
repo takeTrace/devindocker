@@ -9,7 +9,7 @@ RUN if [ "$NODE_ENV" = "development" ]; then \
     else \
       echo "prod" && echo "$NODE_ENV" && npm install --omit=dev --registry=https://registry.npm.taobao.org; \
     fi
-COPY . ./4
+COPY . ./
 ENV PORT=3000
 EXPOSE ${PORT}
 CMD ["node", "index.js"]

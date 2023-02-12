@@ -5,12 +5,12 @@ services:
     extends:
       file: docker-compose.base.yml
       service: nginx
+    ports:
+      - "3000:80"
   redis:
     extends:
       file: docker-compose.base.yml
       service: redis
-    # ports:
-    #   - 6379:6379
   mongodb:
     container_name: mongodb
     extends:
@@ -24,7 +24,6 @@ services:
     extends:
       file: docker-compose.base.yml
       service: devindocker
-    # container_name: devInDocker_dev
     build:
       context: .
       args:
@@ -32,20 +31,7 @@ services:
     volumes:
       - ./:/app
       - /app/node_modules
-    environment:
-      NODE_ENV: development
-      MONGO_IP: mongodb
-      MONGO_PORT: 27017
-      MONGO_USER: asd
-      MONGO_PASSWORD: asdasd
-      APP_PORT: 3000
-      environment:
-      REDIS_URL: redis
-      REDIS_PORT: 6379
-      COOKIE_SECRET: "keyboard cat"
-    # ports:
-    #   - 4000:3000
-    env_file: .env
+    env_file: .env.dev.local
     command: npm run dev
 
 volumes:

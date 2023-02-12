@@ -1,18 +1,37 @@
-version: '3.4'
+version: '3.8'
 
 services:
+  nginx:
+    extends:
+      file: docker-compose.base.yml
+      service: nginx
+    ports:
+      - "8080:80"
+  redis:
+    extends:
+      file: docker-compose.base.yml
+      service: redis
+  mongodb:
+    container_name: mongodb
+    extends:
+      file: docker-compose.base.yml
+      service: mongodb
+    user: root
+    volumes:
+      - mongo-db:/data/db
+
   devindocker:
     extends:
       file: docker-compose.base.yml
       service: devindocker
-    container_name: devInDocker_prod
+    image: taketrace00/devindocker
     build:
       context: .
       args:
         NODE_ENV: production
-    environment:
-      NODE_ENV: production
     env_file: .env
-    # ports:
-    #   - 3000:3000
     command: npm run start
+
+volumes:
+  mongo-db:
+    name: 'mongo-db'

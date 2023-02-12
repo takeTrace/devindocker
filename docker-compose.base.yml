@@ -4,8 +4,6 @@ services:
   nginx:
     image: nginx:stable-alpine
     container_name: nginx
-    ports:
-      - "3000:80"
     volumes:
       - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf:ro
   redis:
@@ -13,9 +11,8 @@ services:
     container_name: redis
   mongodb:
     image: mongo
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: asd
-      MONGO_INITDB_ROOT_PASSWORD: asdasd
+    env_file: .env
+
 
   devindocker:
     image: devindocker
@@ -25,8 +22,6 @@ services:
     environment:
       NODE_ENV: production
       PORT: '3000'
-    # ports:
-    #   - 3000:3000
     command: ["npm", "run", "start"]
-    # depends_on:
-    #   - mongodb
+    depends_on:
+      - mongodb
