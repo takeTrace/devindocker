@@ -74,7 +74,7 @@ const connectDBWithRetry = () => {
 
   app.get('/', (req, res) => {
     console.log(`hi, there`);
-    res.send('<h1>Hi docker00!</h1>');
+    res.send('<h1>2. Hi docker with watch over~~!</h1>');
   })
 
   app.use('/api/v1/posts', postRouter);

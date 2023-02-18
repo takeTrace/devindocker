@@ -21,6 +21,20 @@ services:
       - mongo-db:/data/db
 
   devindocker:
+    deploy:
+      replicas: 8
+      restart_policy:
+        condition: any
+        delay: 5s
+        max_attempts: 3
+        window: 100s
+      rollback_config:
+        parallelism: 2
+        delay: 3s
+      update_config:
+        parallelism: 2
+        delay: 2s
+
     extends:
       file: docker-compose.base.yml
       service: devindocker
