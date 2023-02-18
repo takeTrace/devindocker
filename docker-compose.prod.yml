@@ -24,7 +24,6 @@ services:
     deploy:
       replicas: 8
       restart_policy:
-        condition: any
         delay: 5s
         max_attempts: 3
         window: 100s
