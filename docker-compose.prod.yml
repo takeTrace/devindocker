@@ -9,7 +9,7 @@ services:
 
   devindocker:
     deploy:
-      replicas: 8
+      replicas: 2
       restart_policy:
         delay: 5s
         max_attempts: 3
